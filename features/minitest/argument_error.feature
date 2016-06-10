@@ -15,6 +15,6 @@ Feature: ArgumentError
     When I run `ruby example_spec.rb`
     Then the output should contain:
       """
-      Method `inspect` is called with 1 argument, but it only accepts 0 arguments.
+      Method `inspect` was called with 1 argument, but it only accepts 0 arguments.
       Refactor `def inspect` into `def inspect(arg1)` or call `inspect` instead of `inspect(arg1)`.
       """
