@@ -3,6 +3,9 @@ module Budd
     module UnexpectedError
       def message
         hint = Hint.for(exception)
+
+        return super unless hint
+
         message = super.split("\n")
 
         lines = message.shift
