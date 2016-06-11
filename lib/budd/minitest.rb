@@ -9,7 +9,7 @@ module Budd
         message = super.split("\n")
 
         lines = message.shift
-        lines << "\n\n#{hint.message}\n"
+        lines << "\n\n#{hint.lines.join('\n')}\n\n"
         lines << message.join("\n")
       end
     end

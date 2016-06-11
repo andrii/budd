@@ -7,11 +7,11 @@ module Budd
         @exception = exception
       end
 
-      def message
-        <<-EOT.gsub(/^ {10}/, '')
-          Method `#{method_name}` was called with #{given_arguments} #{pluralize('argument', given_arguments)}, but it only accepts #{expected_arguments} #{pluralize('argument', expected_arguments)}.
-          Refactor `def #{method_signature(method_name, expected_arguments)}` into `def #{method_signature(method_name, given_arguments)}` or call `#{method_signature(method_name, expected_arguments)}` instead of `#{method_signature(method_name, given_arguments)}`.
-        EOT
+      def lines
+        [
+          "Method `#{method_name}` was called with #{given_arguments} #{pluralize('argument', given_arguments)}, but it only accepts #{expected_arguments} #{pluralize('argument', expected_arguments)}.",
+          "Refactor `def #{method_signature(method_name, expected_arguments)}` into `def #{method_signature(method_name, given_arguments)}` or call `#{method_signature(method_name, expected_arguments)}` instead of `#{method_signature(method_name, given_arguments)}`."
+        ]
       end
 
       private

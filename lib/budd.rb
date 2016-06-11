@@ -1,4 +1,5 @@
 require 'budd/minitest' if defined?(Minitest)
+require 'budd/rspec' if defined?(RSpec)
 
 module Budd
   autoload :Hint, 'budd/hint'
