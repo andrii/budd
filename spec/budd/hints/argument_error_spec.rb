@@ -22,4 +22,10 @@ describe Budd::Hints::ArgumentError do
       'Refactor `def first(arg1)` into `def first(arg1, arg2)` or call `first(arg1)` instead of `first(arg1, arg2)`.'
     ]
   end
+
+  it 'returns nil for an unknown exception message' do
+    exception = ArgumentError.new('unknown message')
+    hint = Budd::Hints::ArgumentError.new(exception)
+    _(hint.lines).must_be_nil
+  end
 end

@@ -8,10 +8,10 @@ module Budd
       end
 
       def lines
-        [
-          "Method `#{method_name}` was called with #{given_arguments} #{pluralize('argument', given_arguments)}, but it only accepts #{expected_arguments} #{pluralize('argument', expected_arguments)}.",
-          "Refactor `def #{method_signature(method_name, expected_arguments)}` into `def #{method_signature(method_name, given_arguments)}` or call `#{method_signature(method_name, expected_arguments)}` instead of `#{method_signature(method_name, given_arguments)}`."
-        ]
+        @lines ||=
+          if wrong_number_of_arguments?
+            wrong_number_of_arguments_lines
+          end
       end
 
       private
@@ -44,6 +44,22 @@ module Budd
           count.times { |i| args[i] = args[i] + i.next.to_s }
           method_name + "(#{args.join(', ')})"
         end
+      end
+
+      def wrong_number_of_arguments?
+        exception.message.start_with?('wrong number of arguments')
+      end
+
+      def wrong_number_of_arguments_lines
+        [
+          "Method `#{method_name}` was called with #{given_arguments} " \
+          "#{pluralize('argument', given_arguments)}, but it only accepts " \
+          "#{expected_arguments} #{pluralize('argument', expected_arguments)}.",
+          "Refactor `def #{method_signature(method_name, expected_arguments)}` " \
+          "into `def #{method_signature(method_name, given_arguments)}` or " \
+          "call `#{method_signature(method_name, expected_arguments)}` " \
+          "instead of `#{method_signature(method_name, given_arguments)}`."
+        ]
       end
     end
   end
