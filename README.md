@@ -5,6 +5,8 @@
 
 budd is an RSpec and Minitest extension that adds the hints on fixing the Ruby Core exceptions to the failing specs output.
 
+When you write tests first for the code that doesn't exist yet, standard errors drive the implementation until expectations can be run. budd hints suggest the changes to the implementation necessary to make the tests pass.
+
 The following errors are supported:
 * [ArgumentError](https://relishapp.com/andrii/budd/docs/rspec/argumenterror)
 
